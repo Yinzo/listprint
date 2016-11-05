@@ -9,7 +9,7 @@ from collections import ChainMap
 
 last_output_lines = 0
 overflow_flag = False
-is_atty = True if sys.stdout.isatty() else False
+is_atty = sys.stdout.isatty()
 
 widths = [
     (126,    1), (159,    0), (687,     1), (710,   0), (711,   1),
