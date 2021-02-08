@@ -15,12 +15,14 @@ else:
     from shutil import get_terminal_size
     from builtins import input
 
+import colorama
+colorama.init()
 
 last_output_lines = 0
 overflow_flag = False
 is_atty = sys.stdout.isatty()
 
-magic_char = "\033[F"
+cursor_up = "\x1b[1A"
 
 widths = [
     (126,    1), (159,    0), (687,     1), (710,   0), (711,   1),
@@ -86,12 +88,14 @@ def cut_off_at(content, width):
         return content
 
 def print_line(content, columns, force_single_line):
-
     padding = " " * ((columns - line_width(content)) % columns)
     output = "{content}{padding}".format(content=content, padding=padding)
     if force_single_line:
         output = cut_off_at(output, columns)
-    print(output, end='')
+    
+    # here use extra space to unify the cursor position when printing
+    # full-width line, which is different in windows cmd and others
+    print(output, end=' \b')
     sys.stdout.flush()
 
 
@@ -177,11 +181,11 @@ def print_multi_line(content, force_single_line, sort_key):
 
     # 输出额外的空行来清除上一次输出的剩余内容
     # do extra blank lines to wipe the remaining of last output
-    print(" " * columns * (last_output_lines - lines), end="")
+    print(" " * columns * (last_output_lines - lines), end=" \b")
 
     # 回到初始输出位置
     # back to the origin pos
-    print(magic_char * (max(last_output_lines, lines)-1), end="")
+    print(cursor_up * (max(last_output_lines, lines)), end="")
     sys.stdout.flush()
     last_output_lines = lines
 
