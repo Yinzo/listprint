@@ -18,7 +18,7 @@ pip install reprint
 
 ## DEMO
 
-+ [DEMO源码](https://github.com/Yinzo/reprint/blob/master/demo/horse_race.py)
++ [DEMO源码](https://github.com/Yinzo/reprint/blob/master/demo/file_moving.py)
 
 ![Demo_gif](https://raw.githubusercontent.com/yinzo/reprint/master/demo/images/file_moving_demo.gif)
 

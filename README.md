@@ -21,7 +21,7 @@ pip install reprint
 
 ## DEMO
 
-+ [source code](https://github.com/Yinzo/reprint/blob/master/demo/horse_race.py)
++ [source code](https://github.com/Yinzo/reprint/blob/master/demo/file_moving.py)
 
 ![Demo_gif](https://raw.githubusercontent.com/yinzo/reprint/master/demo/images/file_moving_demo.gif)
 
