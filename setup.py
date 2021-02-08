@@ -3,9 +3,9 @@ from setuptools import setup, find_packages
 
 setup(
     name="reprint",
-    version="0.5.2",
+    version="0.6.0",
     packages=find_packages(),
-    install_requires=['six', 'backports.shutil_get_terminal_size'],
+    install_requires=['six', 'backports.shutil_get_terminal_size', 'colorama'],
     author="Yinzo",
     author_email="oop995+pypi@gmail.com",
     description="A simple module for Python2/3 to print and refresh multi line output contents in terminal",
