@@ -123,6 +123,9 @@ def lines_of_content(content, width):
             # adding 2 for the for the colon and space ": "
             _k, _v = map(preprocess, (k, v))
             result += ceil((line_width(_k) + line_width(_v) + 2) / width)
+        for line in content.sublist:
+            _line = preprocess(line)
+            result += ceil(line_width(_line) / width)
     return int(result)
 
 
@@ -166,6 +169,9 @@ def print_multi_line(content, force_single_line, sort_key):
         for k, v in sorted(content.items(), key=sort_key):
             _k, _v = map(preprocess, (k, v))
             print_line("{}: {}".format(_k, _v), columns, force_single_line)
+        for line in content.sublist:
+            _line = preprocess(line)
+            print_line(_line, columns, force_single_line)
     else:
         raise TypeError("Excepting types: list, dict. Got: {}".format(type(content)))
 
@@ -263,6 +269,7 @@ class output:
             super(output.SignalDict, self).__init__(obj)
             self.parent = parent
             self.lock = threading.Lock()
+            self.sublist = []
 
         def change(self, newlist):
             with self.lock:
@@ -317,6 +324,12 @@ class output:
                 if is_atty:
                     self.parent.refresh(int(time.time()*1000), forced=False)
 
+        def append(self, x):
+            global is_atty
+            with self.lock:
+                self.sublist.append(x)
+                if is_atty:
+                    self.parent.refresh(int(time.time()*1000), forced=False)
 
     def __init__(self, output_type="list", initial_len=1, interval=0, force_single_line=False, no_warning=False, sort_key=lambda x:x[0]):
         self.sort_key = sort_key
