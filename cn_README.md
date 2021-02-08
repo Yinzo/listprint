@@ -20,7 +20,7 @@ pip install reprint
 
 + [DEMO源码](https://github.com/Yinzo/reprint/blob/master/demo/horse_race.py)
 
-![Demo_gif](https://raw.githubusercontent.com/yinzo/reprint/master/demo/images/horse_race_demo.gif)
+![Demo_gif](https://raw.githubusercontent.com/yinzo/reprint/master/demo/images/file_moving_demo.gif)
 
 ## 使用说明
 
@@ -45,6 +45,8 @@ pip install reprint
 
 ## 注意事项
 + 在 `with` 块内，任何 `print` 、`logging` 或 `Exception` 等其他命令行输出都可能会导致输出格式异常，如果需要追加内容，请使用 `output` 对象的 `append` 函数（list 与 dict 模式都可用）
+
++ 在 dict 模式的 `output` 对象中包含一个名为 `sublist`的 `list` 对象，用于在 dict 模式中追加内容。你可以通过 `output.sublist` 来直接操作修改其内容。
 
 + 请勿直接给 `output` 对象赋予 `list` 或 `dict` 等对象，如果需要整体内容替换，请使用 `output` 对象的 `change` 函数（list 与 dict 模式都可用）
 

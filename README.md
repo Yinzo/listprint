@@ -23,7 +23,7 @@ pip install reprint
 
 + [source code](https://github.com/Yinzo/reprint/blob/master/demo/horse_race.py)
 
-![Demo_gif](https://raw.githubusercontent.com/yinzo/reprint/master/demo/images/horse_race_demo.gif)
+![Demo_gif](https://raw.githubusercontent.com/yinzo/reprint/master/demo/images/file_moving_demo.gif)
 
 ## Guidance
 
@@ -48,6 +48,8 @@ pip install reprint
 
 ## Note
 + In the `with` block, any `print`/`logging`/`Exception` commands that print texts on terminal would ruin the format of the reprint output. If you need to append some content to the end of the output, use `append` function in the `output` object (works both in the list or the dict mode).
+
++ There is a `list` object name `sublist` in dict mode, which is used to append content in dict mode by `append` function in the `output` object. You can also directly access it by `output.sublist`.
 
 + Don't assign a new `list` or `dict` to the `output` object. If you want to change the whole list or dict, use `change` function in the `output` object (works both in the list or the dict mode).
 
